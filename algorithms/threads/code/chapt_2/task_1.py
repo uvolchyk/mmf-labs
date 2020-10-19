@@ -29,28 +29,38 @@ def get_sync2_launch_moments(T):
 
 
 def gantt_converter_async(T):
-    launch_moments = get_launch_moments(T)
+    
     result = []
+    launch_moments = get_sync2_launch_moments(T)
+    finish_moments = [0 for _ in range(len(T[0]))]
     # constructing a chart's metadata
-    for (i, process) in enumerate(T):
-        c_sum = launch_moments[i]
-        for (j, block_time) in enumerate(process):
+    for i in range(len(T)):
+        for j in range(len(T[i])):
+
+            current_padding = launch_moments[i] + sum(T[i][0:j])
+
+            if current_padding < finish_moments[j]:
+                current_padding = finish_moments[j]
+
+            next_padding =  current_padding + T[i][j]
+
             result.append(
                 dict(
                     process=i,
                     block=j,
-                    duration=dt.datetime.fromtimestamp(block_time+c_sum).strftime('%Y-%m-%d %H:%M:%S'),
-                    start=dt.datetime.fromtimestamp(c_sum).strftime('%Y-%m-%d %H:%M:%S')
+                    duration=dt.datetime.fromtimestamp(next_padding).strftime('%Y-%m-%d %H:%M:%S'),
+                    start=dt.datetime.fromtimestamp(current_padding).strftime('%Y-%m-%d %H:%M:%S')
                 )
             )
-            c_sum += block_time
+            finish_moments[j] = next_padding
     return result
 
 
 def gantt_converter_sync1(T):
-    launch_moments = [0 for _ in range(len(T))]
-    result = []
     
+    result = []
+    launch_moments = [0 for _ in range(len(T))]
+
     for i in range(len(T)):
         if i > 0:
             for j in range(len(T[i])):
@@ -107,7 +117,7 @@ def gantt_converter_sync2(T):
 
 
 # result = sorted(gantt_converter_sync2(blocks), key=lambda i: i["process"])
-result = gantt_converter_sync1(blocks)
+result = gantt_converter_async(blocks)
 # for i in result:
 #     print(i)
 
