@@ -1,5 +1,4 @@
-import Foundation
-
+// MARK: Node
 
 class BTreeNode<Key: Comparable, Value> {
     
@@ -31,14 +30,8 @@ extension BTreeNode {
     
     func value(for key: Key) -> Value {
         var index = keys.startIndex
-        
         while (index + 1) < keys.endIndex && keys[index] < key { index = (index + 1) }
-        
-//        if keys.endIndex == index {
-//            return nil
-//        } else {
         return values[index]
-//        }
     }
 }
 
@@ -100,6 +93,13 @@ extension BTreeNode: CustomStringConvertible {
 }
 
 extension BTreeNode {
+    func traverseKeysPostOrder(_ process: (Key) -> Void) {
+        children?.last?.traverseKeysPostOrder(process)
+        for i in (0..<numberOfKeys).reversed() {
+            children?[i].traverseKeysPostOrder(process)
+            process(keys[i])
+        }
+    }
     func traverseKeysInOrder(_ process: (Key) -> Void) {
       for i in 0..<numberOfKeys {
         children?[i].traverseKeysInOrder(process)
@@ -109,6 +109,8 @@ extension BTreeNode {
       children?.last?.traverseKeysInOrder(process)
     }
 }
+
+// MARK: Tree
 
 class BTree<Key: Comparable, Value> {
     let order: Int
@@ -160,17 +162,19 @@ class BTree<Key: Comparable, Value> {
     
 }
 
-let tree = BTree<Int, Int>(order: 2)
 
-for i in 1..<18 {
-    
-    tree.insert(Int(arc4random()), for: i)
+
+let tree = BTree<Int, Int>(order: 5)
+
+let initialMeta = (1...16).map { _ -> Int in Int.random(in: 0...150) }.sorted()
+let testMeta = Array(initialMeta.suffix(from: 8)) + Array(initialMeta.prefix(upTo: 8))
+print(testMeta.enumerated().map { "\($0) - \($1)"})
+testMeta.enumerated().forEach { (n, x) in
+    tree.insert(x, for: n)
 }
 
+tree.rootNode.traverseKeysPostOrder { (key) in
+    print(key)
+}
 
-print(tree.rootNode.description)
-
-//tree.rootNode.traverseKeysInOrder({ (key) in
-//    print(key)
-//})
-//
+print("\(tree.rootNode.value(for: 4)) <- value")
