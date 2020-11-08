@@ -1,8 +1,16 @@
-# So, if you are here.. Hi! 👋
+# 101, Stranger! 👋
+---
+Whether you came here with a clear purpose or got randomly <br>
+I usually place here ready solutions of laboratory works <br>
+with the reason to help other students reduce the time <br>
+they usually spend on resolving tasks <br>
 
-You can use this code as you wish, BUT.<br>
-I don't say that anything you find here is properly done<br>
-So, if you have any trouble with it, you should blame only yourself<br>
-Or try to contact me, I will find a time to help you
+Unfortunately, I can't bet that anything <br>
+you can find here is properly done. <br>
+Anyway, if you have any troubles, <br>
+try to resolve them alone. In a pinch - text me <br>
+I will find a little time to help you <br>
 
 wish you luck ❤️
+
+MMF, 9 group (18-22 yy)
