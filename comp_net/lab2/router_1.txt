@@ -1,0 +1,27 @@
+;====== Router 1===============
+
+en
+conf t 
+no ip domain-lookup
+hostname VUI-1
+
+int fa0/0
+ip addr 172.20.16.1  255.255.248.0
+no shutdown
+
+int fa1/0
+ip addr 172.20.24.1 255.255.248.0
+no shutdown
+
+exit 
+
+ip route 172.20.8.0 255.255.248.0 172.20.24.2
+exit 
+
+;====================== 
+write
+
+erase startup-config
+
+reload
+
