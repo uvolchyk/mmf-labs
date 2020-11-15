@@ -5,3 +5,4 @@
 ##### 4. Jacobi method
 ##### 5. Seidel method
 ##### 6. Danilevsky method
+##### 7. Jacobi (Rotations) method
