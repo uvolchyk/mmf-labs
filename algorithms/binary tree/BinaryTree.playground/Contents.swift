@@ -195,3 +195,5 @@ func treeString<T>(_ node:T, reversed:Bool=false, isTop:Bool=true, using nodeInf
 }
 
 print(treeString(root) { (node) -> (String, Node<Int>?, Node<Int>?) in return ("\(node.description)", node.left, node.right)})
+
+print("\(root.searchBelow(for: 97)!.value)")

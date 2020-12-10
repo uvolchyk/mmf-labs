@@ -30,7 +30,13 @@ extension BTreeNode {
     
     func value(for key: Key) -> Value {
         var index = keys.startIndex
-        while (index + 1) < keys.endIndex && keys[index] < key { index = (index + 1) }
+        
+        while (index) < keys.endIndex && (values[index] < values[keys.index(before: key)]) { index = (index + 1) }
+//        if key == keys[index] {
+//            return values[index]
+//        } else {
+//            return children[index].value(for: key)
+//        }
         return values[index]
     }
 }
@@ -177,7 +183,7 @@ testMeta.enumerated().forEach { (n, x) in
 print("Представление дерева")
 tree.rootNode.printTree()
 
-print("Результат поиска снизу\n \(tree.rootNode.value(for: 4)) <- value")
+print("Результат поиска снизу\n \(tree.rootNode.value(for: 7)) <- value")
 
 print("Результат обратного обхода")
 tree.rootNode.traverseKeysPostOrder({ (node) in
