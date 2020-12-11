@@ -1,0 +1,16 @@
+PODS:
+  - Graphite (0.0.16)
+
+DEPENDENCIES:
+  - Graphite (~> 0.0)
+
+SPEC REPOS:
+  trunk:
+    - Graphite
+
+SPEC CHECKSUMS:
+  Graphite: b2ae6c53979c3b0be1d1843690ecd3c049bf745f
+
+PODFILE CHECKSUM: 376040cf1c37393b520564492fd5b6899b0f0e1b
+
+COCOAPODS: 1.10.0
