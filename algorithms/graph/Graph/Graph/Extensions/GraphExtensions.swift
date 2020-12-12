@@ -131,12 +131,19 @@ struct BK {
 //    }
     
     mutating func extends(clicque: inout Set<Int>, candidates: inout Set<Int>, excluded: inout Set<Int>) {
-        let isEnd = !excluded.filter { (vertex) -> Bool in
-            graph.edges
-                .filter({ !$0.nodes.intersection(candidates).isEmpty && $0.nodes.contains(vertex) })
-                .count == candidates.count
-            }.isEmpty
-        while(!candidates.isEmpty && !isEnd) {
+        
+        //       algo ends work when <excluded> contains a
+        //       vertex connected with all candidates
+        
+//        let notEnd = excluded.filter { (vertex) -> Bool in
+//            graph.edges
+//                .filter({ !$0.nodes.intersection(candidates).isEmpty && $0.nodes.contains(vertex) })
+//                .count == candidates.count
+//            }.isEmpty
+        
+        let notEnd = end(candidates: candidates, excluded: excluded)
+        let copyCandidates = Set(candidates)
+        if(!notEnd) {
             candidates.forEach { (vertex) in
                 clicque.insert(vertex)
                 candidates.remove(vertex)
@@ -146,29 +153,85 @@ struct BK {
                 var newCandidates = candidates.intersection(neighbours)
                 var newExcluded = excluded.intersection(neighbours)
                 if (newCandidates.isEmpty && newExcluded.isEmpty) {
-                    clicques.insert(Set(clicque))
+                    clicques.insert(clicque)
                 } else {
                     extends(clicque: &clicque, candidates: &newCandidates, excluded: &newExcluded)
                 }
                 excluded.insert(vertex)
+                clicque.remove(vertex)
+                
             }
         }
     }
     
-//    func end(candidates: Set<Int>, excluded: Set<Int>) -> Bool {
-//        var end = false
-//        var edgecounter: Int = 0
-//        excluded.forEach { (found) in
-//            edgecounter = 0
-//            candidates.forEach { (candidate) in
-//                if (!graph.edges.filter({ $0.nodes.intersection([found, candidate]).count == 2 }).isEmpty) {
-//                    edgecounter += 1
+    
+    mutating func biggestMaximalCliques() {
+        var maximum: Int = 0
+        
+        var biggestCliques = Set<Set<Int>>()
+        clicques.forEach { (clique) in
+            if (maximum < clique.count) {
+                maximum = clique.count
+            }
+        }
+        clicques.forEach { (clique) in
+            if (maximum == clique.count) {
+                biggestCliques.insert(clique)
+            }
+        }
+        print(biggestCliques)
+    }
+    
+    func mis() {
+        var i = Set<Int>()
+        var unsettled = Set(graph.nodes)
+        while (!unsettled.isEmpty) {
+            let vertex = unsettled.first!
+            i.insert(vertex)
+            unsettled.subtract([vertex])
+            unsettled = unsettled.filter({ (candidate) -> Bool in
+                graph.edges
+                    .filter({ $0.nodes.intersection([candidate, vertex]).count == 2 })
+                    .isEmpty
+            })
+        }
+        print(i)
+    }
+    
+//    public Collection<Set<V>> getBiggestMaximalCliques()
+//        {
+//            // first, find all cliques
+//            getAllMaximalCliques();
+//
+//            int maximum = 0;
+//            Collection<Set<V>> biggest_cliques = new ArrayList<Set<V>>();
+//            for (Set<V> clique : cliques) {
+//                if (maximum < clique.size()) {
+//                    maximum = clique.size();
 //                }
 //            }
-//            if (edgecounter == candidates.count) {
-//                end = true
+//            for (Set<V> clique : cliques) {
+//                if (maximum == clique.size()) {
+//                    biggest_cliques.add(clique);
+//                }
 //            }
+//            return biggest_cliques;
 //        }
-//        return end
-//    }
+    
+    func end(candidates: Set<Int>, excluded: Set<Int>) -> Bool {
+        var end = false
+        var edgecounter: Int = 0
+        excluded.forEach { (found) in
+            edgecounter = 0
+            candidates.forEach { (candidate) in
+                if (!graph.edges.filter({ $0.nodes.intersection([found, candidate]).count == 2 }).isEmpty) {
+                    edgecounter += 1
+                }
+            }
+            if (edgecounter == candidates.count) {
+                end = true
+            }
+        }
+        return end
+    }
 }

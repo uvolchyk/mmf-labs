@@ -62,7 +62,7 @@ class SecondTaskViewController: UIViewController {
             .init(nodes: [4,8], weight: 0.1),
             .init(nodes: [3,9], weight: 0.1),
             .init(nodes: [1,7], weight: 0.1),
-            .init(nodes: [7,8], weight: 0.1)
+            .init(nodes: [7,8], weight: 0.1),
         ]
 //        let edges: [Graph.Edge] = (1..<10).map { a in
 //            let b = max(min(100, Int.random(max: 8) - 4 + a), 0)
@@ -82,10 +82,14 @@ class SecondTaskViewController: UIViewController {
         
         bk = BK(graph)
         
-        bk?.dothings()
-        bk?.clicques.forEach({ (set) in
-            print(set)
-        })
+//        bk?.dothings()
+//        bk?.clicques.forEach({ (set) in
+//            print(set)
+//        })
+//
+//        print("And biggest")
+//        bk?.biggestMaximalCliques()
+        bk?.mis()
     }
 }
 
