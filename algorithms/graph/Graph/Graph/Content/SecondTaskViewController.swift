@@ -27,13 +27,19 @@ class SecondTaskViewController: UIViewController {
         super.viewDidLoad()
         
         
-        let button = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(showDialog))
+        let button = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars"), style: .plain, target: self, action: #selector(showDialog))
         navigationItem.rightBarButtonItem = button
         
         let resetButton = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(resetGraph))
-        navigationItem.leftBarButtonItem = resetButton
+        let addVertextButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(addVertex))
+        let addEdgeButton = UIBarButtonItem(image: UIImage(systemName: "plus.square"), style: .plain, target: self, action: #selector(addEdge))
         
-        let nodes = 1..<20
+        let removeVertexButton = UIBarButtonItem(image: UIImage(systemName: "minus.circle"), style: .plain, target: self, action: #selector(removeVertex))
+        let removeEdgeButton = UIBarButtonItem(image: UIImage(systemName: "minus.square"), style: .plain, target: self, action: #selector(removeEdge))
+        navigationItem.leftBarButtonItems = [addVertextButton, removeVertexButton, addEdgeButton, removeEdgeButton, resetButton]
+        
+        
+        let nodes = 1..<14
         let edges: [Graph.Edge] = [
             .init(nodes: [1,2], weight: 0.1),
             .init(nodes: [1,4], weight: 0.1),
@@ -91,6 +97,78 @@ extension SecondTaskViewController {
             self.settledVertices.remove(vertex)
             self.presenter.graph.addNode(vertex)
         }
+    }
+    
+    @objc func addVertex() {
+        let controller = UIAlertController(title: "Add vertex", message: nil, preferredStyle: .alert)
+        controller.addTextField { (textField) in
+            textField.placeholder = "Vertex"
+        }
+        controller.addAction(.init(title: "Add", style: .cancel, handler: { (action) in
+            if let fields = controller.textFields,
+               let fieldText = fields[0].text,
+               let vertex = Int(fieldText) {
+                self.presenter.graph.nodes.insert(vertex)
+            }
+        }))
+        present(controller, animated: true)
+    }
+    
+    @objc func addEdge() {
+        let controller = UIAlertController(title: "Add edge", message: nil, preferredStyle: .alert)
+        controller.addTextField { (textField) in
+            textField.placeholder = "Origin"
+        }
+        controller.addTextField { (textField) in
+            textField.placeholder = "Finish"
+        }
+        controller.addAction(.init(title: "Add", style: .cancel, handler: { (action) in
+            if let fields = controller.textFields,
+               let originText = fields[0].text,
+               let finishText = fields[1].text,
+               let origin = Int(originText),
+               let finish = Int(finishText) {
+                let edge = Graph.Edge(nodes: [origin, finish], weight: 0.1)
+                self.presenter.graph.edges.insert(edge)
+            }
+        }))
+        present(controller, animated: true)
+    }
+    
+    @objc func removeVertex() {
+        let controller = UIAlertController(title: "Remove vertex", message: nil, preferredStyle: .alert)
+        controller.addTextField { (textField) in
+            textField.placeholder = "Vertex"
+        }
+        controller.addAction(.init(title: "Remove", style: .cancel, handler: { (action) in
+            if let fields = controller.textFields,
+               let fieldText = fields[0].text,
+               let vertex = Int(fieldText) {
+                self.presenter.graph.nodes.remove(vertex)
+            }
+        }))
+        present(controller, animated: true)
+    }
+    
+    @objc func removeEdge() {
+        let controller = UIAlertController(title: "Remove edge", message: nil, preferredStyle: .alert)
+        controller.addTextField { (textField) in
+            textField.placeholder = "Origin"
+        }
+        controller.addTextField { (textField) in
+            textField.placeholder = "Finish"
+        }
+        controller.addAction(.init(title: "Remove", style: .cancel, handler: { (action) in
+            if let fields = controller.textFields,
+               let originText = fields[0].text,
+               let finishText = fields[1].text,
+               let origin = Int(originText),
+               let finish = Int(finishText) {
+                let edge = Graph.Edge(nodes: [origin, finish], weight: 0.1)
+                self.presenter.graph.edges.remove(edge)
+            }
+        }))
+        present(controller, animated: true)
     }
 }
 
