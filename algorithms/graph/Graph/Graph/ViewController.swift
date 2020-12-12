@@ -17,7 +17,18 @@ extension Int {
 class ViewController: UIViewController {
     
     var flag = true
+    
+    var settledVertices = Set<Int>()
+    
+    lazy var compl: (Int) -> () = { vertex in
+        self.presenter.graph.removeNode(vertex)
+        self.settledVertices.insert(vertex)
+        self.presenter.graph.addNode(vertex)
+        
+    }
 
+    var bfs: BFS?
+    
     var presenter: WeightedGraphPresenter!
     
 //    var nodes: [Int: (name: String, color: UIColor)] = [:]
@@ -25,7 +36,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nodes = 1...20
+        let nodes = 1..<10
 //        let edges = (1..<20).map {
 //            Graph.Edge(nodes: [$0, $0 + 1], weight: 0.1)
 //        }
@@ -35,48 +46,90 @@ class ViewController: UIViewController {
 ////            Graph.Edge(nodes: [$0, $0 % 2], weight: 1)
 //        }
         
-        let edges: [Graph.Edge] = (1..<20).map { a in
-            let b = max(min(100, Int.random(max: 8) - 4 + a), 0)
-            return Graph.Edge(nodes: [a, b], weight: 0.1)
-        }
+        let button = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(showDialog))
+        navigationItem.rightBarButtonItem = button
+        
+        let resetButton = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(resetGraph))
+        navigationItem.leftBarButtonItem = resetButton
+        
+        let edges: [Graph.Edge] = [
+            .init(nodes: [1,2], weight: 0.1),
+            .init(nodes: [1,4], weight: 0.1),
+            .init(nodes: [2,3], weight: 0.1),
+            .init(nodes: [3,5], weight: 0.1),
+            .init(nodes: [5,6], weight: 0.1),
+            .init(nodes: [4,8], weight: 0.1),
+            .init(nodes: [3,9], weight: 0.1),
+            .init(nodes: [1,7], weight: 0.1),
+            .init(nodes: [7,8], weight: 0.1)
+        ]
+//        let edges: [Graph.Edge] = (1..<10).map { a in
+//            let b = max(min(100, Int.random(max: 8) - 4 + a), 0)
+//            return Graph.Edge(nodes: [a, b], weight: 0.1)
+//        }
         
         let graph = Graph(nodes: nodes, edges: edges)
         
         presenter = WeightedGraphPresenter(graph: Graph(nodes: [], edges: []), view: self.view)
-        presenter.collisionDistance = 100
+        presenter.collisionDistance = 400
         presenter.delegate = self
         presenter.edgeColor = .yellow
         presenter.start()
         presenter.graph = graph
         presenter.backgroundColor = .black
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if flag {
-            presenter.graph.edges.insert(.init(nodes: [4,10], weight: 3))
-        } else {
-            presenter.graph.edges.remove(.init(nodes: [4,10], weight: 3))
+}
+
+extension ViewController {
+    @objc func showDialog() {
+        let controller = UIAlertController(title: "Choose vertices", message: nil, preferredStyle: .alert)
+        controller.addTextField { (textField) in
+            textField.placeholder = "Origin"
         }
-        flag.toggle()
-//        if let num1 = (1...20).randomElement() {
-//            if let num2 = (1...20).filter({ $0 != num1 }).randomElement() {
-//                presenter.graph.edges.insert(.init(nodes: [num1,num2], weight: 0.4))
-//            }
-//        }
-        
+        controller.addTextField { (textField) in
+            textField.placeholder = "Finish"
+        }
+        controller.addAction(.init(title: "Find path", style: .cancel, handler: { (action) in
+            if let fields = controller.textFields,
+               let originText = fields[0].text,
+               let finishText = fields[1].text,
+               let origin = Int(originText),
+               let finish = Int(finishText) {
+                self.bfs = BFS(self.presenter.graph)
+                self.bfs?.markCompletion = self.compl
+                self.bfs?.bfs(start: origin, goal: finish, completion: { (isok) in
+                    
+                })
+            }
+        }))
+        present(controller, animated: true)
     }
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        presenter.graph.nodes.insert(.random(max: 400))
+    
+    @objc func resetGraph() {
+        self.bfs = nil
+        let copy = Set(self.settledVertices)
+        copy.forEach { (vertex) in
+            self.presenter.graph.removeNode(vertex)
+            self.settledVertices.remove(vertex)
+            self.presenter.graph.addNode(vertex)
+        }
+        
     }
 }
 
 extension ViewController: WeightedGraphPresenterDelegate {
     func view(for node: Int, presenter: WeightedGraphPresenter) -> UIView {
         let view = UIView()
-        let length = 20
+        let length = 40
         view.frame = CGRect(x: 0, y: 0, width: length, height: length)
         view.layer.cornerRadius = CGFloat(length / 2)
-        view.layer.backgroundColor = UIColor(hue: CGFloat(node) / 70, saturation: 1, brightness: 1, alpha: 1).cgColor
+        let randomColor = UIColor(hue: CGFloat(node) / 20, saturation: 1, brightness: 1, alpha: 1).cgColor
+        view.layer.backgroundColor = self.settledVertices.contains(node) ? UIColor.white.cgColor : randomColor
+        
+        let label = UILabel(frame: view.frame)
+        label.textAlignment = .center
+        label.text = "\(node)"
+        view.addSubview(label)
         return view
     }
     
