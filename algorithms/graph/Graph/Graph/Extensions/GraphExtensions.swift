@@ -28,6 +28,59 @@ extension Graph {
     mutating func removeEdge(_ edge: Edge) {
         edges.remove(edge)
     }
+    
+    func printAdjacencyMatrix() {
+        var matrix = Array<Array<Int>>()
+        nodes.sorted().forEach { (v1) in
+            var row = Array<Int>()
+            nodes.sorted().forEach { (v2) in
+                if (!edges.filter({ $0.nodes.sorted() == [v1,v2] }).isEmpty) {
+                    row.append(1)
+                } else {
+                    row.append(0)
+                }
+            }
+            matrix.append(row)
+        }
+        matrix.forEach({ print($0) })
+    }
+    
+    func printIncidenceMatrix() {
+        var matrix = Array<Array<Int>>()
+        edges.sorted { (e1, e2) -> Bool in
+            e1.nodes.sorted()[0] < e2.nodes.sorted()[1]
+        }.forEach { (edge) in
+            var row = Array<Int>()
+            nodes.sorted().forEach { (vertex) in
+                if (edge.nodes.contains(vertex)) {
+                    row.append(1)
+                } else {
+                    row.append(0)
+                }
+            }
+            matrix.append(row)
+        }
+        matrix.forEach({ print($0) })
+    }
+    
+    func printArcs() {
+        edges.forEach { (edge) in
+            let nodes = edge.nodes.sorted()
+            print("\(nodes[0]) -> \(nodes[1])")
+        }
+    }
+    
+    func printAdjacencyLists() {
+        var list = [Int:Array<Int>]()
+        nodes.sorted().forEach { (vertex) in
+            list[vertex] = edges
+                .filter{( $0.nodes.contains(vertex) )}
+                .map({ $0.nodes.subtracting([vertex]).first! })
+        }
+        list.forEach { (key, value) in
+            print("\(key) -> \(value)")
+        }
+    }
 }
 
 // MARK: -
