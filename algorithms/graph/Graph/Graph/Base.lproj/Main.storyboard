@@ -24,11 +24,11 @@
             </objects>
             <point key="canvasLocation" x="1952.1739130434785" y="78.348214285714278"/>
         </scene>
-        <!--Item-->
+        <!--BFS-->
         <scene sceneID="nNQ-TU-MeR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DXW-Z2-UPk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4QB-yx-fvU"/>
+                    <tabBarItem key="tabBarItem" title="BFS" image="lasso" catalog="system" id="4QB-yx-fvU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dPx-R8-2fV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -55,17 +55,18 @@
                     <connections>
                         <segue destination="DXW-Z2-UPk" kind="relationship" relationship="viewControllers" id="WP3-0N-4dO"/>
                         <segue destination="YDI-8s-H8v" kind="relationship" relationship="viewControllers" id="MbX-5d-BpF"/>
+                        <segue destination="5Hv-Cm-mL1" kind="relationship" relationship="viewControllers" id="yzg-nZ-Ckr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x2c-Pd-ptn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="97" y="429"/>
+            <point key="canvasLocation" x="81" y="779"/>
         </scene>
-        <!--Item-->
+        <!--MIS-->
         <scene sceneID="vap-iw-BGm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YDI-8s-H8v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="KlQ-4h-7yT"/>
+                    <tabBarItem key="tabBarItem" title="MIS" image="pencil" catalog="system" id="KlQ-4h-7yT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mEX-IW-FSj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -80,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="1042" y="779"/>
         </scene>
-        <!--Second Task View Controller-->
+        <!--ThirdMIS View Controller-->
         <scene sceneID="eDZ-1n-jD9">
             <objects>
-                <viewController id="4jj-mK-3Xg" customClass="SecondTaskViewController" customModule="Graph" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4jj-mK-3Xg" customClass="ThirdMISViewController" customModule="Graph" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eZp-Qz-ON0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,8 +97,46 @@
             </objects>
             <point key="canvasLocation" x="1952" y="779"/>
         </scene>
+        <!--DS-->
+        <scene sceneID="bjS-8k-ojK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Hv-Cm-mL1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="DS" image="scribble.variable" catalog="system" id="ONz-UN-4za"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lix-0r-DAh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jPz-c5-ogQ" kind="relationship" relationship="rootViewController" id="LAq-gK-Nmp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjH-vk-cVL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="1502"/>
+        </scene>
+        <!--ThirdDS View Controller-->
+        <scene sceneID="crW-ah-qZd">
+            <objects>
+                <viewController id="jPz-c5-ogQ" customClass="ThirdDSViewController" customModule="Graph" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TEN-qb-99C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="AtV-lh-OtQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uVY-IP-pVD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="im0-aN-FnN" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1952" y="1502"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="lasso" catalog="system" width="128" height="118"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="scribble.variable" catalog="system" width="128" height="118"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

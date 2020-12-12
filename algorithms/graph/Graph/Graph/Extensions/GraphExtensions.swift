@@ -107,42 +107,17 @@ struct BK {
         extends(clicque: &clicque, candidates: &candidates, excluded: &not)
     }
     
-//    mutating func extends(clicque: Set<Int>, candidates: inout Set<Int>, not: inout Set<Int>) {
-//        if (!candidates.isEmpty && !not.isEmpty) {
-//            if (!clicque.isEmpty) {
-//                self.clicques.insert(clicque)
-//            }
-////            return
-//        }
-//
-//        var innerCandidates = Set(candidates)
-//        var innerNot = Set(not)
-//
-//        candidates.forEach { (vertex) in
-//            let neighbours = graph.edges
-//                                .filter { $0.nodes.sorted()[0] == vertex }
-//                                .map { $0.nodes.sorted()[1] }
-//            candidates = candidates.intersection(neighbours)
-//            not = not.intersection(neighbours)
-//            extends(clicque: clicque.union([vertex]), candidates: &candidates, not: &not)
-//            candidates.remove(vertex)
-//            not.insert(vertex)
-//        }
-//    }
-    
     mutating func extends(clicque: inout Set<Int>, candidates: inout Set<Int>, excluded: inout Set<Int>) {
         
         //       algo ends work when <excluded> contains a
         //       vertex connected with all candidates
         
-//        let notEnd = excluded.filter { (vertex) -> Bool in
-//            graph.edges
-//                .filter({ !$0.nodes.intersection(candidates).isEmpty && $0.nodes.contains(vertex) })
-//                .count == candidates.count
-//            }.isEmpty
+        let notEnd = excluded.filter { (vertex) -> Bool in
+            graph.edges
+                .filter({ !$0.nodes.intersection(candidates).isEmpty && $0.nodes.contains(vertex) })
+                .count == candidates.count
+            }.isEmpty
         
-        let notEnd = end(candidates: candidates, excluded: excluded)
-        let copyCandidates = Set(candidates)
         if(!notEnd) {
             candidates.forEach { (vertex) in
                 clicque.insert(vertex)
@@ -164,7 +139,6 @@ struct BK {
         }
     }
     
-    
     mutating func biggestMaximalCliques() {
         var maximum: Int = 0
         
@@ -182,56 +156,45 @@ struct BK {
         print(biggestCliques)
     }
     
-    func mis() {
-        var i = Set<Int>()
-        var unsettled = Set(graph.nodes)
-        while (!unsettled.isEmpty) {
-            let vertex = unsettled.first!
-            i.insert(vertex)
-            unsettled.subtract([vertex])
-            unsettled = unsettled.filter({ (candidate) -> Bool in
-                graph.edges
-                    .filter({ $0.nodes.intersection([candidate, vertex]).count == 2 })
-                    .isEmpty
-            })
+    func mis(_ completion: (Array<Set<Int>>) -> ()) {
+        let startNodes = graph.nodes
+        var result = Array<Set<Int>>()
+        startNodes.forEach { (firstVertex) in
+            var i = Set<Int>()
+            var unsettled = Array(Set(graph.nodes).subtracting([firstVertex]))
+            unsettled = [firstVertex] + unsettled
+            while (!unsettled.isEmpty) {
+                let vertex = unsettled.first!
+                i.insert(vertex)
+                unsettled = unsettled
+                    .filter({ $0 != vertex })
+                    .filter({ (candidate) -> Bool in
+                    graph.edges
+                        .filter({ $0.nodes.intersection([candidate, vertex]).count == 2 })
+                        .isEmpty
+                    })
+            }
+            result.append(i)
         }
-        print(i)
+        completion(result)
     }
     
-//    public Collection<Set<V>> getBiggestMaximalCliques()
-//        {
-//            // first, find all cliques
-//            getAllMaximalCliques();
-//
-//            int maximum = 0;
-//            Collection<Set<V>> biggest_cliques = new ArrayList<Set<V>>();
-//            for (Set<V> clique : cliques) {
-//                if (maximum < clique.size()) {
-//                    maximum = clique.size();
-//                }
-//            }
-//            for (Set<V> clique : cliques) {
-//                if (maximum == clique.size()) {
-//                    biggest_cliques.add(clique);
-//                }
-//            }
-//            return biggest_cliques;
-//        }
-    
-    func end(candidates: Set<Int>, excluded: Set<Int>) -> Bool {
-        var end = false
-        var edgecounter: Int = 0
-        excluded.forEach { (found) in
-            edgecounter = 0
-            candidates.forEach { (candidate) in
-                if (!graph.edges.filter({ $0.nodes.intersection([found, candidate]).count == 2 }).isEmpty) {
-                    edgecounter += 1
-                }
+    func ds(_ completion: (Array<Set<Int>>) -> ()) {
+        let startEdges = graph.edges
+        var result = Array<Set<Int>>()
+        startEdges.forEach { (edge) in
+            var s = Set<Int>()
+            var unsettled = Array(Set(graph.edges).subtracting([edge]))
+            unsettled = [edge] + unsettled
+            while (!unsettled.isEmpty) {
+                let nodes = unsettled.first!.nodes.sorted()
+                s.insert(nodes[0])
+                unsettled = unsettled.filter({ (edge) -> Bool in
+                    !edge.nodes.contains(nodes[1])
+                })
             }
-            if (edgecounter == candidates.count) {
-                end = true
-            }
+            result.append(s)
         }
-        return end
+        completion(result)
     }
 }
