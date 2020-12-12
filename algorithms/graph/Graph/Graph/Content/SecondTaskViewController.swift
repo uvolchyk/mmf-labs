@@ -14,7 +14,7 @@ extension Int {
     }
 }
 
-class ViewController: UIViewController {
+class SecondTaskViewController: UIViewController {
     
     var flag = true
     
@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     }
 
     var bfs: BFS?
+    var bk: BK?
     
     var presenter: WeightedGraphPresenter!
     
@@ -77,10 +78,18 @@ class ViewController: UIViewController {
         presenter.start()
         presenter.graph = graph
         presenter.backgroundColor = .black
+        
+        
+        bk = BK(graph)
+        
+        bk?.dothings()
+        bk?.clicques.forEach({ (set) in
+            print(set)
+        })
     }
 }
 
-extension ViewController {
+extension SecondTaskViewController {
     @objc func showDialog() {
         let controller = UIAlertController(title: "Choose vertices", message: nil, preferredStyle: .alert)
         controller.addTextField { (textField) in
@@ -117,7 +126,7 @@ extension ViewController {
     }
 }
 
-extension ViewController: WeightedGraphPresenterDelegate {
+extension SecondTaskViewController: WeightedGraphPresenterDelegate {
     func view(for node: Int, presenter: WeightedGraphPresenter) -> UIView {
         let view = UIView()
         let length = 40
