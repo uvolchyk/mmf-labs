@@ -54,6 +54,9 @@ class ThirdMISViewController: UIViewController {
         presenter.backgroundColor = .black
         
         graph.printAdjacencyMatrix()
+        graph.printArcs()
+        graph.printAdjacencyLists()
+        graph.printIncidenceMatrix()
     }
 }
 
