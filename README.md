@@ -14,3 +14,15 @@ I will find a little time to help you <br>
 wish you luck ❤️
 
 MMF, 9 group (18-22 yy)
+
+## Other repos
+---
+### Android
+- [Labs](https://github.com/trotnic/android)
+### EPAM 
+- [Test automation trainee](https://github.com/trotnic/epam-tat)
+- [Java Spring labs](https://github.com/trotnic/epam-java)
+- [SQL labs](https://github.com/trotnic/epam-sql)
+
+### Course Works
+- [2-nd course](https://github.com/trotnic/takeandfood-client)
