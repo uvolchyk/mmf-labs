@@ -15,8 +15,10 @@ wish you luck ❤️
 
 MMF, 9 group (18-22 yy)
 
-## Other repos
----
+# Useful links
+- [System Engineering materials (perez)](https://www.notion.so/SysEng-a418c02964e64c0cad2ed7e715c3e12e)
+
+# Other repos
 ### Android
 - [Labs](https://github.com/trotnic/android)
 ### EPAM 
