@@ -17,7 +17,8 @@ MMF, 9 group (18-22 yy)
 
 # Useful links
 - [System Engineering materials (perez)](https://www.notion.so/SysEng-a418c02964e64c0cad2ed7e715c3e12e)
-- [Algorithms](https://www.notion.so/uvolchyk/b7da5624ea7c40aba840a5f2dcbc6657)
+- [Algorithms (Practice)](https://www.notion.so/uvolchyk/b7da5624ea7c40aba840a5f2dcbc6657)
+- [Algorithms (Exam questions)](https://www.notion.so/uvolchyk/aad0091199a844098955a50474e7df54)
 
 # Other repos
 ### Knowledge Base
