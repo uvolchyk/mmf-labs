@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GOz-JA-JmV">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Knuth-Morris-Pratt-->
+        <scene sceneID="lct-yG-PJR">
+            <objects>
+                <viewController id="2lN-Hg-adr" customClass="KMPViewController" customModule="NeedleSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Jg-ex-VSH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Flb-Lt-D5C">
+                                <rect key="frame" x="20" y="64" width="374" height="105"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iiw-A2-91N">
+                                <rect key="frame" x="20" y="269" width="374" height="524"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <mutableString key="text">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xiH-mw-HMk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Flb-Lt-D5C" firstAttribute="height" secondItem="iiw-A2-91N" secondAttribute="height" multiplier="0.2" id="J7w-FK-AVu"/>
+                            <constraint firstItem="xiH-mw-HMk" firstAttribute="trailing" secondItem="Flb-Lt-D5C" secondAttribute="trailing" constant="20" id="Ten-2h-9r1"/>
+                            <constraint firstItem="Flb-Lt-D5C" firstAttribute="top" secondItem="xiH-mw-HMk" secondAttribute="top" constant="20" id="Xdz-il-cpi"/>
+                            <constraint firstItem="iiw-A2-91N" firstAttribute="top" secondItem="Flb-Lt-D5C" secondAttribute="bottom" constant="100" id="ksu-Ya-RCD"/>
+                            <constraint firstItem="xiH-mw-HMk" firstAttribute="trailing" secondItem="iiw-A2-91N" secondAttribute="trailing" constant="20" id="nKN-Gp-nza"/>
+                            <constraint firstItem="Flb-Lt-D5C" firstAttribute="leading" secondItem="xiH-mw-HMk" secondAttribute="leading" constant="20" id="pB3-I0-8ux"/>
+                            <constraint firstItem="iiw-A2-91N" firstAttribute="leading" secondItem="xiH-mw-HMk" secondAttribute="leading" constant="20" id="pzu-JT-7ux"/>
+                            <constraint firstItem="xiH-mw-HMk" firstAttribute="bottom" secondItem="iiw-A2-91N" secondAttribute="bottom" constant="20" id="wp3-od-cBa"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Knuth-Morris-Pratt" image="2.circle" catalog="system" id="LD6-Kl-N9M"/>
+                    <connections>
+                        <outlet property="resultField" destination="iiw-A2-91N" id="Jhm-PR-7kb"/>
+                        <outlet property="searchField" destination="Flb-Lt-D5C" id="cPB-Tq-5Dd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oVZ-su-wth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="-656"/>
+        </scene>
+        <!--Rabin-Karp-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="RabinKarpViewController" customModule="NeedleSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZGj-Hj-E1X">
+                                <rect key="frame" x="20" y="269" width="374" height="524"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <mutableString key="text">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a3z-A6-8xd">
+                                <rect key="frame" x="20" y="64" width="374" height="105"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZGj-Hj-E1X" firstAttribute="top" secondItem="a3z-A6-8xd" secondAttribute="bottom" constant="100" id="3ev-TH-bDg"/>
+                            <constraint firstItem="a3z-A6-8xd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="4Jq-Aa-5v7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZGj-Hj-E1X" secondAttribute="bottom" constant="20" id="Gzq-Di-ImB"/>
+                            <constraint firstItem="a3z-A6-8xd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YrW-II-mQK"/>
+                            <constraint firstItem="a3z-A6-8xd" firstAttribute="height" secondItem="ZGj-Hj-E1X" secondAttribute="height" multiplier="0.2" id="ZJb-e8-fwM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a3z-A6-8xd" secondAttribute="trailing" constant="20" id="bLs-5M-Ued"/>
+                            <constraint firstItem="ZGj-Hj-E1X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ddq-Ag-tuf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZGj-Hj-E1X" secondAttribute="trailing" constant="20" id="xRZ-Ag-mdR"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rabin-Karp" image="1.circle" catalog="system" id="yAr-X8-7BJ"/>
+                    <connections>
+                        <outlet property="resultField" destination="ZGj-Hj-E1X" id="PqA-AA-Pbl"/>
+                        <outlet property="searchField" destination="a3z-A6-8xd" id="Omz-aR-Fxm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="116.51785714285714"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Ljt-BM-2sj">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GOz-JA-JmV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IDd-qI-R3w">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="R6J-lG-WFa"/>
+                        <segue destination="2lN-Hg-adr" kind="relationship" relationship="viewControllers" id="5aP-Bt-SKc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Loh-Od-vsS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="-279"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="1.circle" catalog="system" width="128" height="121"/>
+        <image name="2.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
