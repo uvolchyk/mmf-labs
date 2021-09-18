@@ -1,17 +1,16 @@
 # 101, Stranger! 👋
----
-Whether you came here with a clear purpose or got randomly <br>
-I usually place here ready solutions of laboratory works <br>
-with the reason to help other students reduce the time <br>
-they usually spend on resolving tasks <br>
 
-Unfortunately, I can't bet that anything <br>
-you can find here is properly done. <br>
-Anyway, if you have any troubles, <br>
-try to resolve them alone. In a pinch - text me <br>
-I will find a little time to help you <br>
+Regardless of whether you came here intentionally or got accidentally, <br>
+Please, read this message, thx 🙂
+I usually do place here finished works of various subjects <br>
+by the only reason: to help other students reduce the time <br>
+they need to spend on solving their tasks. <br>
 
-wish you luck ❤️
+But, unfortunately, I can't assure that all the solutions you see here are completely correct. <br>
+For this reason, I kindly ask you to do some mind work from your side, when necessary. <br>
+As a last resort, you can knock on my mail, I'll try to find a little time to help you. 😉 <br>
+
+Wish you luck ❤️
 
 MMF, 9 group (18-22 yy)
 
