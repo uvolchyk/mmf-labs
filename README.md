@@ -1,7 +1,8 @@
 # 101, Stranger! 👋
 
 Regardless of whether you came here intentionally or got accidentally, <br>
-Please, read this message, thx 🙂
+Please, read this message, thx 🙂 <br>
+
 I usually do place here finished works of various subjects <br>
 by the only reason: to help other students reduce the time <br>
 they need to spend on solving their tasks. <br>
