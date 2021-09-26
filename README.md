@@ -22,6 +22,7 @@ MMF, 9 group (18-22 yy)
 - [Calculus (Exam questions)](https://uvolchyk.notion.site/d79664cc8cfa4693820d72829e92d6cb)
 - [CMoAR (6 semestre)](https://uvolchyk.notion.site/b15e4836d0a74b01961b6292556d12ce)
 - [CVaOM (6 semestre)](https://uvolchyk.notion.site/888d25e83b7b48b484a942f33bf2d4f9)
+- [Logic Programming (7 semestre)](https://uvolchyk.notion.site/e4c2c2983b874181bc7b28dba6947f1a)
 
 # Other repos
 ### Knowledge Base
