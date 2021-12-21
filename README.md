@@ -25,6 +25,8 @@ MMF, 9 group (18-22 yy)
 - [☺️ click](https://github.com/trotnic/knowledge-base)
 ### Android
 - [Labs](https://github.com/trotnic/android)
+### Linux
+- [Labs (1 course)](https://github.com/trotnic/os)
 ### EPAM 
 - [Test automation trainee](https://github.com/trotnic/epam-tat)
 - [Java Spring labs](https://github.com/trotnic/epam-java)
