@@ -16,10 +16,10 @@ Wish you luck ❤️
 MMF, 9 group (18-22 yy)
 
 # Useful links
-- [6 semestre](https://uvolchyk.notion.site/d626ddeceb46492889c79f8b4ac00cc4?v=16d845b1eaba4051a0bf802d81e0e889)
-- [7 semestre](https://www.notion.so/uvolchyk/de238e9565f244388ce45c79c175f8e7?v=011e7a2302894d92ac1f6660b6f83bd1)
-- [8 semestre](https://uvolchyk.notion.site/9abb89013a9245709e7a9189f8cce310?v=90b14bb1141e4bde8719ec5f804093f2)
-- [System Engineering materials (perez)](https://www.notion.so/SysEng-a418c02964e64c0cad2ed7e715c3e12e)
+- 6 semestre 🚧 In work
+- 7 semestre 🚧 In work
+- 8 semestre 🚧 In work
+- System Engineering materials (perez) 🚧 In work
 
 # Other repos
 ### Knowledge Base
