@@ -16,10 +16,10 @@ Wish you luck ❤️
 MMF, 9 group (18-22 yy)
 
 # Useful links
+- [5 semestre](https://uvoedu.notion.site/50e901b558cd4200976f473755305166?v=0174b4a5b77b4f7eab0b5dcde80f602d)
 - 6 semestre 🚧 In work
-- 7 semestre 🚧 In work
+- [7 semestre](https://www.notion.so/uvoedu/69a8595bde6c4f219c4d7a722848496b?v=5c7ff048c2574b61aa66a6bc1b64a15e)
 - 8 semestre 🚧 In work
-- System Engineering materials (perez) 🚧 In work
 
 # Other repos
 ### Knowledge Base
